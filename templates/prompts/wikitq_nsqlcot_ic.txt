@@ -1,0 +1,276 @@
+Below are some examples:
+
+Title: Fabrice Santoro
+CREATE TABLE t1(
+	row_id int,
+	name text,
+	2001 text,
+	2002 text,
+	2003 text,
+	2004 text,
+	2005 text,
+	2006 text,
+	2007 text,
+	2008 text,
+	2009 text,
+	2010 text,
+	career\nsr text,
+	career\nwin-loss text)
+/*
+3 example rows:
+SELECT * FROM t1 LIMIT 3;
+row_id	name	2001	2002	2003	2004	2005	2006	2007	2008	2009	2010	career\nsr	career\nwin-loss
+0	australian open	2r	1r	3r	2r	1r	qf	3r	2r	3r	1r	0 / 18	22–18
+1	french open	4r	2r	2r	3r	1r	1r	1r	2r	1r	a	0 / 20	17–20
+2	wimbledon	3r	2r	2r	2r	2r	2r	2r	1r	2r	a	0 / 14	11–14
+*/
+
+Q: did he win more at the australian open or indian wells?
+NeuralSQL: 
+Solution outline:
+1. Find the number of wins for australian open and indian wells.
+2. Compare the number of wins.
+Further analysis:
+For step 1, we need information in `career\nwin-loss` and `name` columns. We need to extract the number of wins. We will use the QA("map@") grammar.
+Step 2 can be done with a SQL query.
+Final output:
+```
+SELECT `name` FROM t1 WHERE `name` IN ('australian open', 'indian wells') ORDER BY QA("map@how many wins?"; `career\nwin-loss`) DESC LIMIT 1
+```
+
+
+Title: Highest mountain peaks of California
+CREATE TABLE t1(
+	row_id int,
+	rank int,
+	mountain peak text,
+	mountain range text,
+	elevation text,
+	prominence text,
+	isolation text,
+	location text)
+/*
+3 example rows:
+SELECT * FROM t1 LIMIT 3;
+row_id	rank	mountain peak	mountain range	elevation	prominence	isolation	location
+0	1	mount whitney	sierra nevada	14505 ft; 4421 m	10080 ft; 3072 m	1646 mi; 2649 km	36°34′43″n 118°17′31″w﻿ / ﻿36.5786°n 118.292°w
+1	2	mount williamson	sierra nevada	14379 ft; 4383 m	1677 ft; 511 m	5.4 mi; 8.7 km	36°39′21″n 118°18′40″w﻿ / ﻿36.6559°n 118.3111°w
+2	3	white mountain peak	white mountains	14252 ft; 4344 m	7196 ft; 2193 m	67 mi; 109 km	37°38′3″n 118°15′21″w﻿ / ﻿37.6341°n 118.2557°w
+*/
+
+Q: which mountain peak has a prominence more than 10,000 ft?
+NeuralSQL: 
+Solution outline:
+1. Find the prominence in ft.
+2. Filter mountain peaks that have more than 10,000 ft.
+Further analysis:
+For step 1, we need information in `prominence` column. We need to extract the prominence in ft. So we will use the QA("map@") grammar.
+Step 2 can be done with a SQL query.
+Final output:
+```
+SELECT `mountain peak` FROM t1 WHERE QA("map@prominence in ft?"; `prominence`) > 10000
+```
+
+
+Title: Daegu FC
+CREATE TABLE t1(
+	row_id int,
+	season int,
+	division int,
+	tms. int,
+	pos. int,
+	fa cup text,
+	afc cl text)
+/*
+3 example rows:
+SELECT * FROM t1 LIMIT 3;
+row_id	season	division	tms.	pos.	fa cup	afc cl
+0	2003	1	12	11	quarter final	none
+1	2004	1	13	10	round of 32	none
+2	2005	1	13	8	quarter final	none
+*/
+
+Q: how far did they make it in the fa cup after 2009?
+NeuralSQL: 
+Solution outline:
+1. Find the records after 2009.
+2. Determine how far did they make it in the fa cup.
+Further analysis:
+For step 1, we can filter using `season` column.
+For step 2, it's hard to determine using SQL query, so we will use the QA("ans@") grammar.
+Final output:
+```
+QA("ans@how far did they make?"; SELECT `fa cup` FROM t1 WHERE `season` > 2009)
+```
+
+
+Title: Electricity in Sri Lanka
+CREATE TABLE t1(
+	row_id int,
+	filledcolumnname text,
+	2005 int,
+	2006 int,
+	2007 int,
+	2008 int,
+	2009 int,
+	2010 int,
+	2011 int,
+	2012 int)
+/*
+3 example rows:
+SELECT * FROM t1 LIMIT 3;
+row_id	filledcolumnname	2005	2006	2007	2008	2009	2010	2011	2012
+0	hydro power	1293	1316	1326	1357	1379	1382	1401	1584
+1	thermal	1155	1155	1155	1285	1290	1390	1690	1638
+2	other renewables	3	3	3	3	15	45	50	90
+*/
+
+Q: did the hydro power increase or decrease from 2010 to 2012?
+NeuralSQL: 
+Solution outline:
+1. Find the hydro power in 2010 and 2012.
+2. Compare the values.
+Further analysis:
+For step 1, we can directly get the values in columns `2010` and `2012`.
+Step 2 can be done with a SQL query.
+Final output:
+```
+SELECT CASE 
+    WHEN 
+    (SELECT `2010` FROM t1 WHERE `filledcolumnname` = 'hydro power') 
+    < 
+    (SELECT `2012` FROM t1 WHERE `filledcolumnname` = 'hydro power') 
+    THEN 'increase' 
+    ELSE 'decrease' 
+END
+```
+
+
+Title: Electoral district of Lachlan
+CREATE TABLE t1(
+	row_id int,
+	member text,
+	party text,
+	term text)
+/*
+3 example rows:
+SELECT * FROM t1 LIMIT 3;
+row_id	member	party	term
+0	john ryan	none	1859–1864
+1	james martin	none	1864–1869
+2	james watson	none	1869–1880
+*/
+
+Q: of the members of the lachlan, who served the longest?
+NeuralSQL: 
+Solution outline:
+1. Find how long each member served.
+2. Find the member who served the longest.
+Further analysis:
+For step 1, we need information in `term` column. We need to calculate the length of each term for comparison. We will use the QA("map@") grammar.
+Step 2 can be done with a SQL query.
+Final output:
+```
+SELECT `member` FROM t1 ORDER BY QA("map@how long does it last?"; `term`) DESC LIMIT 1
+```
+
+
+Title: Płock Governorate
+CREATE TABLE t1(
+	row_id int,
+	language text,
+	number int,
+	percentage (%) text,
+	males int,
+	females int)
+/*
+3 example rows:
+SELECT * FROM t1 LIMIT 3;
+row_id	language	number	percentage (%)	males	females
+0	polish	447685	80.86	216794	230891
+1	yiddish	51215	9.25	24538	26677
+2	german	35931	6.49	17409	18522
+*/
+
+Q: how many male and female german speakers are there?
+NeuralSQL: 
+Solution outline:
+1. Find the number of male and female speakers respectively.
+2. Find those that are german speakers.
+3. Add them up.
+Further analysis:
+For step 1, we have the numbers ready in `males` and `females` columns.
+For step 2, we can filter by `language` column.
+Step 3 can be done with a SQL query.
+Final output:
+```
+SELECT `males` + `females` FROM t1 WHERE `language` = 'german'
+```
+
+
+Title: Demographics of Alaska
+CREATE TABLE t1(
+	row_id int,
+	by race text,
+	white text,
+	black text,
+	aian* text,
+	asian text,
+	nhpi* text)
+/*
+3 example rows:
+SELECT * FROM t1 LIMIT 3;
+row_id	by race	white	black	aian*	asian	nhpi*
+0	2000 (total population)	75.43%	4.46%	19.06%	5.24%	0.88%
+1	growth 2000–5 (hispanic only)	3.42%	0.33%	0.45%	0.16%	0.06%
+2	2005 (total population)	74.71%	4.72%	18.77%	5.9%	0.88%
+*/
+
+Q: which hispanic population had the greatest growth from 2000 to 2005?
+NeuralSQL: 
+Solution outline:
+1. Find the growth for each race from 2000 to 2005.
+2. Find the race with the greatest growth.
+Further analysis:
+For step 1, we can filter by `by race` column.
+For step 2, it's difficult to decide with a SQL query, so we will use the QA("ans@") grammar.
+Final output:
+```
+QA("ans@which race had the greatest value?"; SELECT `white`, `black`,  `aian*`, asian, `nhpi*` FROM t1 WHERE `by race` = 'growth 2000–5 (hispanic only)')
+```
+
+
+Title: 2007 New Orleans Saints season
+CREATE TABLE t1(
+	row_id int,
+	week int,
+	date text,
+	opponent text,
+	time text,
+	game site text,
+	tv text,
+	result/score text,
+	record text)
+/*
+3 example rows:
+SELECT * FROM t1 LIMIT 3;
+row_id	week	date	opponent	time	game site	tv	result/score	record
+0	1	2007-9-6	indianapolis colts	t20:30 edt	rca dome	nbc	l 41 – 10	0–1
+1	2	2007-9-16	tampa bay buccaneers	t13:0 edt	raymond james stadium	fox	l 31 – 14	0–2
+2	3	2007-9-24	tennessee titans	t20:30 edt	louisiana superdome	espn	l 31 – 14	0–3
+*/
+
+Q: what number of games were lost at home?
+NeuralSQL: 
+Solution outline:
+1. Find the losing games.
+2. Find the games at home.
+3. Count the number of games that satisfy both conditions.
+Further analysis:
+For step 1, we need information in `result/score` column. We need to parse if it's a win or loss. We will use the QA("map@") grammar.
+For step 2, we need information in `game site` column. We need additional information on whether it's a home game or not. We will use the QA("map@") grammar.
+Step 3 can be done with a SQL query.
+Final output:
+```
+SELECT COUNT(*) FROM t1 WHERE QA("map@is it a loss?"; `result/score`) = 'yes' AND QA("map@is it the home court of New Orleans Saints?"; `game site`) = 'yes'
+```

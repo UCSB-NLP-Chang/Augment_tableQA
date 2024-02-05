@@ -1,0 +1,96 @@
+Read the following table and write a program to answer the question:
+Title: Fabrice Santoro
+name | 2001 | 2002 | 2003 | 2004 | 2005 | 2006 | 2007 | 2008 | 2009 | 2010 | career\nsr | career\nwin-loss
+australian open | 2r | 1r | 3r | 2r | 1r | qf | 3r | 2r | 3r | 1r | 0 / 18 | 22–18
+french open | 4r | 2r | 2r | 3r | 1r | 1r | 1r | 2r | 1r | a | 0 / 20 | 17–20
+indian wells | 3r | 2r | 2r | 2r | 2r | 2r | 2r | 1r | 2r | a | 0 / 14 | 11–14
+
+Q: did he win more at the australian open or indian wells?
+num_win_australian_open = 22
+num_win_indian_wells = 11
+ans = 'australian open' if num_win_australian_open > num_win_indian_wells else 'indian wells'
+
+
+Read the following table and write a program to answer the question:
+Title: Highest mountain peaks of California
+rank | mountain peak | mountain range | elevation | prominence | isolation | location
+1 | mount whitney | sierra nevada | 14505 ft; 4421 m | 10080 ft; 3072 m | 1646 mi; 2649 km | 36°34′43″n 118°17′31″w﻿ / ﻿36.5786°n 118.292°w
+2 | mount williamson | sierra nevada | 14379 ft; 4383 m | 1677 ft; 511 m | 5.4 mi; 8.7 km | 36°39′21″n 118°18′40″w﻿ / ﻿36.6559°n 118.3111°w
+3 | white mountain peak | white mountains | 14252 ft; 4344 m | 7196 ft; 2193 m | 67 mi; 109 km | 37°38′3″n 118°15′21″w﻿ / ﻿37.6341°n 118.2557°w
+
+Q: which mountain peak has a prominence more than 10,000 ft?
+prominence_in_ft = {'mount whitney': 10080, 'mount williamson': 1677, 'white mountain peak': 7196}
+ans = [mountain for mountain, prominence in prominence_in_ft.items() if prominence > 10000]
+
+
+Read the following table and write a program to answer the question:
+Title: Daegu FC
+season | division | tms. | pos. | fa cup | afc cl
+2003 | 1 | 12 | 11 | quarter final | none
+2004 | 1 | 13 | 10 | round of 32 | none
+2010 | 1 | 13 | 8 | quarter final | none
+
+Q: how far did they make it in the fa cup after 2009?
+ans = 'quarter final'
+
+
+Read the following table and write a program to answer the question:
+Title: Electricity in Sri Lanka
+filledcolumnname | 2005 | 2006 | 2007 | 2008 | 2009 | 2010 | 2011 | 2012
+hydro power | 1293 | 1316 | 1326 | 1357 | 1379 | 1382 | 1401 | 1584
+thermal | 1155 | 1155 | 1155 | 1285 | 1290 | 1390 | 1690 | 1638
+other renewables | 3 | 3 | 3 | 3 | 15 | 45 | 50 | 90
+
+Q: did the hydro power increase or decrease from 2010 to 2012?
+hydro_power_2010 = 1382
+hydro_power_2012 = 1584
+ans = 'increase' if hydro_power_2010 < hydro_power_2012 else 'decrease'
+
+
+Read the following table and write a program to answer the question:
+Title: Electoral district of Lachlan
+member | party | term
+john ryan | none | 1859–1864
+james martin | none | 1864–1869
+james watson | none | 1869–1880
+
+Q: of the members of the lachlan, who served the longest?
+serve_length = {'john ryan': 5, 'james martin': 5, 'james watson': 11}
+ans = max(serve_length, key=serve_length.get)
+
+
+Read the following table and write a program to answer the question:
+Title: Płock Governorate
+language | number | percentage (%) | males | females
+polish | 447685 | 80.86 | 216794 | 230891
+yiddish | 51215 | 9.25 | 24538 | 26677
+german | 35931 | 6.49 | 17409 | 18522
+
+Q: how many male and female german speakers are there?
+male_german_speaker = 17409
+female_german_speaker = 18522
+ans = male_german_speaker + female_german_speaker
+
+
+Read the following table and write a program to answer the question:
+Title: Demographics of Alaska
+by race | white | black | aian* | asian | nhpi*
+2000 (total population) | 75.43% | 4.46% | 19.06% | 5.24% | 0.88%
+growth 2000–5 (hispanic only) | 3.42% | 0.33% | 0.45% | 0.16% | 0.06%
+2005 (total population) | 74.71% | 4.72% | 18.77% | 5.9% | 0.88%
+
+Q: which hispanic population had the greatest growth from 2000 to 2005?
+population_growth = {'white': 3.42, 'black': 0.33, 'aian*': 0.45, 'asian': 0.16, 'nhpi*': 0.06}
+ans = max(population_growth, key=population_growth.get)
+
+
+Read the following table and write a program to answer the question:
+Title: 2007 New Orleans Saints season
+week | date | opponent | time | game site | tv | result/score | record
+1 | 2007-9-6 | indianapolis colts | t20:30 edt | rca dome | nbc | l 41 – 10 | 0–1
+2 | 2007-9-16 | tampa bay buccaneers | t13:0 edt | raymond james stadium | fox | l 31 – 14 | 0–2
+3 | 2007-9-24 | tennessee titans | t20:30 edt | louisiana superdome | espn | l 31 – 14 | 0–3
+
+Q: what number of games were lost at home?
+is_lost_at_home = {0: False, 1: False, 2: True}
+ans = sum(is_lost_at_home.values())

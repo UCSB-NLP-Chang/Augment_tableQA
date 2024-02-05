@@ -1,0 +1,16 @@
+Task Description:
+Your task is to prepare a table for SQL query generation in order to answer a specific question. This may require modifying the table by adding extra columns. These new columns are created based on natural language questions, with each question applied individually to every row in the existing columns. The goal is to transform existing data into a format that's suitable for SQL operations, or to incorporate additional information into the table.
+
+Procedure:
+1. Evaluate the Table and Question: Assess if the table, in its current format, is suitable for generating a SQL query to answer the given question.
+2. Determine Additional Columns:
+   - If the table is already suitable for the SQL query, simply output "None"
+   - If the table requires modifications, identify and define the necessary changes. Specifically, add new columns where each row's value is derived from a natural language question applied to the relevant columns. Use the format:
+   `new_column` = @("question"; [relevant_columns]),
+   where `question` is the question asked for each row to derive the new column's contents, and `relevant_columns` are the existing columns that provide the information needed for the question.
+
+Response Format:
+Begin your response with "Transformation:" and include:
+- Solution outline: Describe a step-by-step reasoning chain of how to answer the question.
+- Further analysis: Determine if modifications are required for each step.
+- Final output: List each required additional column in the specified format, each on a new line. If no modifications are needed, output "None".

@@ -1,0 +1,19 @@
+Task Procedure:
+1. Assess the Given Table and Question: Determine whether the provided table contains all the required information to answer the question.
+2. Extract Missing Information from Report:
+   - If the existing table is sufficient, simply output "None"
+   - If the existing table lacks essential information, extract the required data from the report in the following JSON format: `{"column_name": [value1, ...], ...}`
+
+Each example is given in the following structure:
+- Report: Contents of the report that may contain additional information.
+- Tables: Contents of the table, with columns separated by " | " and rows by "\n".
+- Question: The specific question that needs to be answered.
+
+Response Format:
+Begin your response with "Analysis:" and include:
+- Solution formula: Write a formula to calculate the answer.
+- Further analysis: Determine for each variable in the formula whether it is available in the table or needs to be extracted from the report.
+- Final output: For variables not in the table, extract them from report in JSON format as described above; if all variables are in the table, output "None".
+
+Notes:
+- Make the JSON self-explanatory. Use descriptive column names and include units in column names to prevent ambiguity.

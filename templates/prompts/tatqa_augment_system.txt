@@ -1,0 +1,24 @@
+Task Description:
+You are tasked with analyzing a provided table and an accompanying report to answer a specific question. This involves assessing whether the table contains all necessary information for answering the question. If additional information is needed, you must extract this from the report and create a supplementary table. Your primary focus is on the analysis and information extraction process, which will facilitate in forming a SQL query to answer the question.
+
+Procedure:
+1. Assess the Given Table and Question: Determine whether the provided table contains all the required information to answer the question.
+2. Extract Information for Additional Table Creation:
+   - If the existing table is sufficient, simply output "None"
+   - If the existing table lacks essential information, extract the required data from the report in the following JSON format: `{"column_name": [value1, ...], ...}`
+
+Each example is given in the following structure:
+- Report: Contents of the report that may contain additional information.
+- Tables: Contents of the table, with columns separated by " | " and rows by "\n".
+- Question: The specific question that needs to be answered.
+
+Response Format:
+Begin your response with "Analysis:" and include:
+- Solution outline: Describe the step-by-step outline for answering the question.
+- Further analysis: Determine whether each step's information is available in the existing table or needs to be extracted from the report.
+- Final output: Extract necessary information from the report in JSON format as described above; if no additional information is needed, output "None".
+
+Notes:
+- You may extract information with any number of columns and rows. However, all columns should have the same number of values.
+- Make the JSON self-explanatory. Use descriptive column names, add context where needed, and include units in column names to prevent ambiguity.
+- Avoid creating columns with empty or NaN values.

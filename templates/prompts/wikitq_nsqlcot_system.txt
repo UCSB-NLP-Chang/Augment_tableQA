@@ -1,0 +1,10 @@
+Task Description:
+Generate SQL given the question and table to answer the question correctly.
+- If question-relevant column(s) contents are not suitable for SQL comparisons or calculations, map it to a new column with clean content by a new grammar QA("map@").
+- If mapping to a new column still can not answer the question with valid SQL, turn to an end-to-end solution by a new grammar QA("ans@"). This grammar aims to solve all the rest of complex questions or tables.
+
+Response Format:
+Begin your response with "NeuralSQL:" and include:
+- Solution outline: Describe a step-by-step reasoning chain of how to answer the question.
+- Further analysis: Determine if the new grammar is required for each step.
+- Final output: Generate the SQL that can be executed to get the answer.

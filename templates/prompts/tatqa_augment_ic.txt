@@ -1,0 +1,221 @@
+Below are some examples:
+
+Report:
+ASSUMPTIONS USED IN STOCK OPTION PRICING MODEL
+The fair value of options granted was determined using a variation of a binomial option pricing model that takes into account factors specific to the share incentive plans, such as the vesting period. The following table shows the principal assumptions used in the valuation.
+Expected dividend growth is commensurate with BCE’s dividend growth strategy. Expected volatility is based on the historical volatility of BCE’s share price. The risk-free rate used is equal to the yield available on Government of Canada bonds at the date of grant with a term equal to the expected life of the options
+Tables:
+row_id | filledcolumnname | 2019 | 2018
+0 | weighted average fair value per option granted | 2.34 | 2.13
+1 | weighted average share price | 58 | 57
+2 | weighted average exercise price | 58 | 56
+3 | expected dividend growth | 5% | 5%
+4 | expected volatility | 14% | 12%
+5 | risk-free interest rate | 2% | 2%
+6 | expected life (years) | 4 | 4
+
+Question: How is the fair value of options granted determined?
+Analysis:
+Solution outline:
+1. Find how is the fair value of options granted determined.
+Further analysis:
+For step 1, there is no such information in the table. Therefore, we need to extract it from the report.
+Final output:
+{"way_to_determine_fair_value_of_options_granted": ["using a variation of a binomial option pricing model that takes into account factors specific to the share incentive plans, such as the vesting period"]}
+
+
+Report:
+7. Employee numbers and costs
+The average monthly number of employees (including Executive Directors but excluding third-party contractors) employed by the Group was as follows:
+Tables:
+row_id | filledcolumnname | 2019 | 2018
+0 | none | number | number
+1 | customer operations | 370 | 380
+2 | product and technology | 317 | 312
+3 | corporate | 115 | 130
+4 | total | 802 | 822
+
+Question: What are the categories of employees listed in the table?
+Analysis:
+Solution outline:
+1. Find the categories of employees in the table.
+Further analysis:
+For step 1, we can directly get the information from the table.
+Final output:
+None
+
+
+Report:
+NOTE 5 – PROPERTY AND EQUIPMENT
+The Company owned equipment recorded at cost, which consisted of the following as of December 31, 2019 and 2018:
+Depreciation expense was $80,206 and $58,423 for the years ended December 31, 2019 and 2018, respectively
+Tables:
+row_id | filledcolumnname | 2019 | 2018
+0 | computer equipment | 137763 | 94384
+1 | furniture and fixtures | 187167 | 159648
+2 | subtotal | 324930 | 254032
+3 | less accumulated depreciation | 148916 | 104702
+4 | property and equipment, net | 176014 | 149330
+
+Question: What is the ratio of depreciation expense to accumulated depreciation of property and equipment in 2019?
+Analysis:
+Solution outline:
+1. Find the amount of depreciation expense and accumulated depreciation of property and equipment in 2019.
+2. Calculate the ratio.
+Further analysis:
+For step 1, the accumulated depreciation is mentioned in the table in row 3. But the depreciation expense is missing from the table. So we need to extract it from the report.
+Step 2 can be done with a SQL query.
+Final output:
+{"depreciation_expense_2019": ["$80,206"]}
+
+
+Report:
+7. Property, Plant and Equipment and Leases
+Property, plant and equipment at April 30, 2019 and 2018, consisted of the following (in thousands):
+Depreciation and amortization expense for the years ended April 30, 2019 and 2018 was $2,802,000 and $2,484,000, respectively.
+Maintenance and repairs charged to operations for the years ended April 30, 2019 and 2018 was approximately $309,000 and $466,000, respectively.
+The Company leases its Long Island, New York headquarters building. On July 25, 2018, the Company signed an amendment to the lease which extends the current lease terms ten years and eight months through September 30, 2029. Pursuant to the amendment to the lease agreement, the annual rent will increase from $1,046,810 in 2019 to $1,276,056 in 2029. Under the terms of the lease, the Company is required to pay its proportionate share of real estate taxes, insurance and other charges.
+In addition, the Company’s subsidiaries in New Jersey and California lease their office and manufacturing facilities. On February 1, 2018, FEI-Elcom entered into a new lease agreement in New Jersey for office and manufacturing space encompassing approximately 9,000 square feet. The monthly rent is $9,673 through the end of the lease which expires in January 31, 2021. FEI-Zyfer has signed a second amendment to its lease in California, which extends the lease an additional 88 months, beginning October 1, 2017 and expiring January 31, 2025. The average annual rent over the period of the amendment is approximately $312,000. FEI-Zyfer leases office and manufacturing space encompassing 27,850 square feet.
+Rent expense under operating leases for the years ended April 30, 2019 and 2018 was approximately $1.2 million and $1.7 million, respectively. The Company records rent expense on its New York building and FEI-Zyfer facility on the straight-line method over the lives of the respective leases. As a result, as of April 30, 2019 and 2018, the Company’s Consolidated Balance Sheet included deferred rent payable of approximately $236,000 and $110,000, respectively, which will be recognized over the respective rental periods.
+Tables:
+row_id | filledcolumnname | 2019 | 2018
+0 | buildings and building improvements | 2692 | 2790
+1 | machinery, equipment and furniture | 57157 | 57503
+2 | none | 59849 | 60293
+3 | less, accumulated depreciation | -46811 | -46166
+4 | none | 13038 | 14127
+
+Question: What is the amount of buildings and building improvements in 2019 and 2018 respectively?
+Analysis:
+Solution outline:
+1. Find the buildings and building improvements in 2019 and 2018.
+Further analysis:
+For step 1, the information is in row 0 of the table.
+Final output:
+None
+
+
+Report:
+17. Income Taxes
+Income before income taxes for the Company’s domestic and foreign operations was as follows:
+Tables:
+row_id | ($ in millions) | 2019.0 | 2018.0 | 2017.0
+0 | domestic | 204.2 | 140.3 | 56.0
+1 | foreign | 11.8 | 19.9 | 14.2
+2 | income before income taxes | 216.0 | 160.2 | 70.2
+
+Question: What was the change in Foreign in 2019 from 2018?
+Analysis:
+Solution outline:
+1. Find the value for Foreign in 2018 and 2019.
+2. Calculate the difference.
+Further analysis:
+For step 1, the information is in the `Foreign` row of the table.
+Step 2 can be done with a SQL operation.
+Final output:
+None
+
+
+Report:
+The following table sets forth the breakdown of revenues by category and segment. Travel revenue includes travel publications (Top 20, Website, Newsflash, Travelzoo Network), Getaway vouchers and hotel platform. Local revenue includes Local Deals vouchers and entertainment offers (vouchers and direct bookings) (in thousands).
+Revenue by geography is based on the billing address of the advertiser. Long-lived assets attributed to the U.S. and international geographies are based upon the country in which the asset is located or owned.
+Tables:
+row_id | none | 2019 | 2018
+0 | asia pacific | none | none
+1 | travel | 6274 | 7351
+2 | local | 216 | 508
+3 | total asia pacific revenues | 6490 | 7859
+4 | europe | none | none
+5 | travel | 32081 | 30856
+6 | local | 4817 | 5293
+7 | total europe revenues | 36898 | 36149
+8 | north america | none | none
+9 | travel | 57863 | 56145
+10 | local | 10161 | 11169
+11 | total north america revenues | 68024 | 67314
+12 | consolidated | none | none
+13 | travel | 96218 | 94352
+14 | local | 15194 | 16970
+15 | total revenues | 111412 | 111322
+
+Question: In 2019, how many geographic regions have total revenues of more than $20,000 thousand?
+Analysis:
+Solution outline:
+1. Find the total revenue of each geographic region.
+2. Count the number of regions that have total revenues more than $20,000 thousand.
+Further analysis:
+For step 1, the information is present in the table.
+Step 2 can be done with a SQL operation.
+Final output:
+None
+
+
+Report:
+11 Intangible assets (continued)
+(a) Intangible assets
+RIGHTS AND LICENCES
+Certain licences that NEXTDC possesses have an indefinite useful life and are carried at cost less impairment losses and are subject to impairment review at least annually and whenever there is an indication that it may be impaired.
+Other licences that NEXTDC acquires are carried at cost less accumulated amortisation and accumulated impairment losses. Amortisation is recognised on a straight-line basis over the estimated useful life. The estimated useful life and amortisation method are reviewed at the end of each annual reporting period.
+INTERNALLY GENERATED SOFTWARE
+Internally developed software is capitalised at cost less accumulated amortisation. Amortisation is calculated using the straight-line basis over the asset’s useful economic life which is generally two to three years. Their useful lives and potential impairment are reviewed at the end of each financial year.
+SOFTWARE UNDER DEVELOPMENT
+Costs incurred in developing products or systems and costs incurred in acquiring software and licenses that will contribute to future period financial benefits through revenue generation and/or cost reduction are capitalised to software and systems. Costs capitalised include external direct costs of materials and services and employee costs.
+Assets in the course of construction include only those costs directly attributable to the development phase and are only recognised following completion of technical feasibility and where the Group has an intention and ability to use the asset.
+Tables:
+row_id | filledcolumnname | rights and licenses | internally generated software | software under development | total
+0 | movements | $'0 | $'0 | $'0 | $'0
+1 | at 30 june 2019 | none | none | none | none
+2 | cost | 13 | 12961 | 16284 | 29259
+3 | accumulated amortisation | none | (5580) | none | (5580)
+4 | netbook amount | 13 | 7381 | 16284 | 23678
+5 | 30 june 2018 | none | none | none | none
+6 | opening net book amount at 1 july 2017 | 43 | 442 | 8053 | 8538
+7 | additions – externally acquired | 13 | none | 5253 | 5266
+8 | additions – internally developed | none | none | 1256 | 1256
+9 | amortisation | (43) | (1746) | none | (1789)
+10 | transfers | none | 7563 | (7563) | none
+11 | transfer between classes | none | 744 | none | 744
+12 | disposals | none | (618) | (490) | (1108)
+13 | closing net book amount | 13 | 6385 | 6509 | 12907
+14 | at 30 june 2018 | none | none | none | none
+15 | cost | 104 | 9555 | 6509 | 16168
+16 | accumulated amortisation | (91) | (3170) | none | (3261)
+17 | net book amount | 13 | 6385 | 6509 | 12907
+
+Question: Which year have greater total accumulated amortisation?
+Analysis:
+Solution outline:
+1. Find total accumulated amortisation for each year.
+2. Compare the values.
+Further analysis:
+For step 1, the information is present in the table.
+Step 2 can be done with a SQL operation.
+Final output:
+None
+
+
+Report:
+Effective Income Tax Rate
+A reconciliation of the United States federal statutory income tax rate to our effective income tax rate is as follows:
+In 2019 and 2018 we had pre-tax losses of $19,573 and $25,403, respectively, which are available for carry forward to offset future taxable income. We made determinations to provide full valuation allowances for our net deferred tax assets at the end of 2019 and 2018, including NOL carryforwards generated during the years, based on our evaluation of positive and negative evidence, including our history of operating losses and the uncertainty of generating future taxable income that would enable us to realize our deferred tax.
+Tables:
+row_id | filledcolumnname | year ended | year ended_2
+0 | none | december 31, 2018 | december 31, 2019
+1 | united states federal statutory rate | 21% | 21%
+2 | state taxes, net of federal benefit | 1.99% | (0.01)%
+3 | valuation allowance | (21.96)% | (24.33)%
+4 | cumulative effect of accounting change | — | 2.07%
+5 | r&d credit | 1.34% | 1.53%
+6 | other | (0.38)% | (0.27)%
+7 | effective income tax rate | 1.99% | (0.01)%
+
+Question: What was the 2019 percentage change in pre-tax losses?
+Analysis:
+Solution outline:
+1. Find pre-tax losses for 2018 and 2019.
+2. Calculate the percentage change.
+Further analysis:
+For step 1, the information is in the report but not the table. So we need to extract it.
+Step 2 can be done with a SQL operation.
+Final output:
+{"pre_tax_losses_2018": ["$25,403"], "pre_tax_losses_2019": ["$19,573"]}

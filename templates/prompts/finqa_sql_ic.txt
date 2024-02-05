@@ -1,0 +1,177 @@
+Report:
+contingent acquisition obligations the following table details the estimated future contingent acquisition obligations payable in cash as of december 31 , 2009 .
+all payments are contingent upon achieving projected operating performance targets and satisfying other conditions specified in the related agreements and are subject to revisions as the earn-out periods progress. .
+as such , these estimated acquisition payments of $ 20.5 have been included within the total payments expected to be made in 2010 in the table and , if not made in 2010 , will continue to carry forward into 2011 or beyond until they are exercised or expire .
+Tables:
+CREATE TABLE t1(
+	row_id int,
+	filledcolumnname text,
+	2010 real,
+	2011 real,
+	2012 real
+	2013 real,
+	2014 real,
+	thereafter real,
+	total real)
+/*
+All rows of the table:
+SELECT * FROM t1;
+row_id	filledcolumnname	2010	2011	2012	2013	2014	thereafter	total
+0	deferred acquisition payments	20.5	34.8	1.2	1.1	2.1	0.3	60.0
+1	redeemable noncontrolling interests and call options with affiliates1	44.4	47.9	40.5	36.3	3.3	2014.0	172.4
+2	total contingent acquisition payments	64.9	82.7	41.7	37.4	5.4	0.3	232.4
+3	less : cash compensation expense included above	1.0	1.0	1.0	0.5	2014.0	2014.0	3.5
+4	total	63.9	81.7	40.7	36.9	5.4	0.3	228.9
+*/
+
+Q: what percentage decrease occurred from 2011-2012 for deferred acquisition payments?
+SQL: 
+Solution formula:
+(deferred_acquisition_payments_2011 - deferred_acquisition_payments_2012) / deferred_acquisition_payments_2011 * 100
+Further analysis:
+deferred_acquisition_payments_2011 is in row 0, column `2011` of t1
+deferred_acquisition_payments_2012 is in row 0, column `2012` of t1
+Final SQL query:
+```
+SELECT 
+    (`2011` - `2012`) / `2011` * 100
+FROM 
+    t1
+WHERE 
+    `row_id` = 0
+```
+
+
+Report:
+the fair value for these options was estimated at the date of grant using a black-scholes option pricing model with the following weighted-average assumptions for 2006 , 2005 and 2004: .
+the black-scholes option valuation model was developed for use in estimating the fair value of traded options which have no vesting restrictions and are fully transferable .
+in addition , option valuation models require the input of highly subjective assumptions , including the expected stock price volatility .
+Tables:
+CREATE TABLE t1(
+	row_id int,
+	filledcolumnname text,
+	2006 real,
+	2005 real,
+	2004 real)
+/*
+All rows of the table:
+SELECT * FROM t1;
+row_id	filledcolumnname	2006	2005	2004
+0	weighted average fair value of options granted	20.01	9.48	7.28
+1	expected volatility	0.3534	0.3224	0.3577
+2	distribution yield	0.01	0.0098	0.013
+3	expected life of options in years	6.3	6.3	6.3
+4	risk-free interest rate	0.05	0.04	0.04
+*/
+
+CREATE TABLE t2(
+	row_id int,
+	total_fair_value_vested_2006 int,
+	total_fair_value_vested_2005 int)
+/*
+All rows of the table:
+SELECT * FROM t2;
+row_id	total_fair_value_vested_2006	total_fair_value_vested_2005
+0	9413	8249
+*/
+
+Q: considering the weighted average fair value of options , what was the decrease between shares that vested in 2006 and 2005?
+SQL: 
+Solution formula:
+total_fair_value_vested_2005 / weighted_average_fair_value_2005 - total_fair_value_vested_2006 / weighted_average_fair_value_2006
+Further analysis:
+total_fair_value_vested_2005 is in row 0, column `total_fair_value_vested_2005` of t2
+weighted_average_fair_value_2005 is in row 0, column `2005` of t1
+total_fair_value_vested_2006 is in row 0, column `total_fair_value_vested_2006` of t2
+weighted_average_fair_value_2006 is in row 0, column `2006` of t1
+Final SQL query:
+```
+SELECT 
+    (SELECT `total_fair_value_vested_2005` FROM t2 WHERE `row_id` = 0) / (SELECT `2005` FROM t1 WHERE `row_id` = 0) 
+    - 
+    (SELECT `total_fair_value_vested_2006` FROM t2 WHERE `row_id` = 0) / (SELECT `2006` FROM t1 WHERE `row_id` = 0)
+```
+
+
+Report:
+purchases of equity securities 2013 during 2014 , we repurchased 33035204 shares of our common stock at an average price of $ 100.24 .
+[b] effective january 1 , 2014 , our board of directors authorized the repurchase of up to 120 million shares of our common stock by december 31 , 2017 .
+Tables:
+CREATE TABLE t1(
+	row_id int,
+	period text,
+	total number ofsharespurchased[a] int,
+	averageprice paidpershare real,
+	total number of sharespurchased as part of apublicly announcedplan or program [b] int,
+	maximum number ofshares that may yetbe purchased under the planor program [b] text)
+/*
+All rows of the table:
+SELECT * FROM t1;
+row_id	period	total number ofsharespurchased[a]	averageprice paidpershare	total number of sharespurchased as part of apublicly announcedplan or program [b]	maximum number ofshares that may yetbe purchased under the planor program [b]
+0	oct . 1 through oct . 31	3087549	107.59	3075000	92618000
+1	nov . 1 through nov . 30	1877330	119.84	1875000	90743000
+2	dec . 1 through dec . 31	2787108	116.54	2786400	87956600
+3	total	7751987	113.77	7736400	n/a
+*/
+
+CREATE TABLE t2(
+	row_id int,
+	share_repurchase_whole_year int)
+/*
+All rows of the table:
+SELECT * FROM t2;
+row_id	share_repurchase_whole_year
+0	33035204
+*/
+
+Q: what percent of the share repurchases were in the fourth quarter?
+SQL: 
+Solution formula:
+share_repurchase_fourth_quarter / share_repurchase_whole_year
+Further analysis:
+share_repurchase_fourth_quarter is in row 3, column `total number ofsharespurchased[a]` of t1
+share_repurchase_whole_year is in row 0, column `share_repurchase_whole_year` of t2
+Final SQL query:
+```
+SELECT 
+    CAST((SELECT `total number ofsharespurchased[a]` FROM t1 WHERE `row_id` = 3) AS REAL) / 
+    (SELECT `share_repurchase_whole_year` FROM t2 WHERE `row_id` = 0) * 100
+```
+
+
+Report:
+management's financial discussion and analysis net revenue 2008 compared to 2007 net revenue consists of operating revenues net of : 1 ) fuel , fuel-related expenses , and gas purchased for resale , 2 ) purchased power expenses , and 3 ) other regulatory charges .
+following is an analysis of the change in net revenue comparing 2008 to 2007 .
+amount ( in millions ) .
+Tables:
+CREATE TABLE t1(
+	row_id int,
+	filledcolumnname text,
+	value text)
+/*
+All rows of the table:
+SELECT * FROM t1;
+row_id	filledcolumnname	value
+0	2007 net revenue	442.3
+1	volume/weather	4.6
+2	reserve equalization	3.3
+3	securitization transition charge	9.1
+4	fuel recovery	n/a
+5	other	-10.1
+6	2008 net revenue	440.9
+*/
+
+Q: what is the percent change in net revenue between 2007 and 2008?
+SQL: 
+Solution formula:
+(net_revenue_2008 - net_revenue_2007) / net_revenue_2007 * 100
+Further analysis:
+net_revenue_2008 is in row 6, column `value` of t1
+net_revenue_2007 is in row 0, column `value` of t1
+Final SQL query:
+```
+SELECT 
+    (CAST((SELECT `value` FROM t1 WHERE `row_id` = 6) AS REAL) - 
+      CAST((SELECT `value` FROM t1 WHERE `row_id` = 0) AS REAL)) /
+    CAST((SELECT `value` FROM t1 WHERE `row_id` = 0) AS REAL) * 100
+```

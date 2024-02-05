@@ -1,0 +1,267 @@
+Read the following table and write a SQL query to answer the question:
+Title: Fabrice Santoro
+CREATE TABLE t1(
+	row_id int,
+	name text,
+	2001 text,
+	2002 text,
+	2003 text,
+	2004 text,
+	2005 text,
+	2006 text,
+	2007 text,
+	2008 text,
+	2009 text,
+	2010 text,
+	career\nsr text,
+	career\nwin-loss text,
+	number_of_wins int)
+/*
+3 example rows:
+SELECT * FROM t1 LIMIT 3;
+row_id	name	2001	2002	2003	2004	2005	2006	2007	2008	2009	2010	career\nsr	career\nwin-loss	number_of_wins
+0	australian open	2r	1r	3r	2r	1r	qf	3r	2r	3r	1r	0 / 18	22–18	22
+1	french open	4r	2r	2r	3r	1r	1r	1r	2r	1r	a	0 / 20	17–20	17
+2	wimbledon	3r	2r	2r	2r	2r	2r	2r	1r	2r	a	0 / 14	11–14	11
+*/
+
+Q: did he win more at the australian open or indian wells?
+SQL: To answer the question, we need following steps:
+1. Find the number of wins for australian open and indian wells from `number_of_wins` column.
+2. Compare the number of wins.
+Final SQL query:
+```
+SELECT `name` FROM t1 WHERE `name` IN ('australian open', 'indian wells') ORDER BY `number_of_wins` DESC LIMIT 1
+```
+
+
+Read the following table and write a SQL query to answer the question:
+Title: 2007 New Orleans Saints season
+CREATE TABLE t1(
+	row_id int,
+	week int,
+	date text,
+	opponent text,
+	time text,
+	game site text,
+	tv text,
+	result/score text,
+	record text,
+	is_loss text,
+	is_home_game text)
+/*
+3 example rows:
+SELECT * FROM t1 LIMIT 3;
+row_id	week	date	opponent	time	game site	tv	result/score	record	is_loss	is_home_game
+0	1	2007-9-6	indianapolis colts	t20:30 edt	rca dome	nbc	l 41 – 10	0–1	yes	no
+1	2	2007-9-16	tampa bay buccaneers	t13:0 edt	raymond james stadium	fox	l 31 – 14	0–2	yes	no
+2	3	2007-9-24	tennessee titans	t20:30 edt	louisiana superdome	espn	l 31 – 14	0–3	no	yes
+*/
+
+Q: what number of games were lost at home?
+SQL: To answer the question, we need following steps:
+1. Find the losing games by `is_loss` column.
+2. Find the games at home by `is_home_game` column.
+3. Count the number of games that satisfy both conditions.
+Final SQL query:
+```
+SELECT COUNT(*) FROM t1 WHERE `is_loss` = 'yes' AND `is_home_game` = 'yes'
+```
+
+
+Read the following table and write a SQL query to answer the question:
+Title: Demographics of Alaska
+CREATE TABLE t1(
+	row_id int,
+	by race text,
+	white text,
+	black text,
+	aian* text,
+	asian text,
+	nhpi* text,
+	largest_value text)
+/*
+3 example rows:
+SELECT * FROM t1 LIMIT 3;
+row_id	by race	white	black	aian*	asian	nhpi*	largest_value
+0	2000 (total population)	75.43%	4.46%	19.06%	5.24%	0.88%	75.43%
+1	growth 2000–5 (hispanic only)	3.42%	0.33%	0.45%	0.16%	0.06%	3.42%
+2	2005 (total population)	74.71%	4.72%	18.77%	5.9%	0.88%	74.71%
+*/
+
+Q: which hispanic population had the greatest growth from 2000 to 2005?
+SQL: To answer the question, we need following steps:
+1. Find the largest value for the growth from 2000 to 2005.
+2. Return the race with the largest growth.
+Final SQL query:
+```
+SELECT 
+  CASE 
+    WHEN `white` = `largest_value` THEN 'white'
+    WHEN `black` = `largest_value` THEN 'black'
+    WHEN `aian*` = `largest_value` THEN 'aian*'
+    WHEN `asian` = `largest_value` THEN 'asian'
+    WHEN `nhpi*` = `largest_value` THEN 'nhpi*'
+    ELSE 'Unknown'
+  END AS greatest_growth_race 
+FROM 
+  t1 
+WHERE 
+  `by race` = 'growth 2000–5 (hispanic only)'
+```
+
+
+Read the following table and write a SQL query to answer the question:
+Title: Highest mountain peaks of California
+CREATE TABLE t1(
+	row_id int,
+	rank int,
+	mountain peak text,
+	mountain range text,
+	elevation text,
+	prominence text,
+	isolation text,
+	location text,
+	prominence_in_ft int)
+/*
+3 example rows:
+SELECT * FROM t1 LIMIT 3;
+row_id	rank	mountain peak	mountain range	elevation	prominence	isolation	location	prominence_in_ft
+0	1	mount whitney	sierra nevada	14505 ft; 4421 m	10080 ft; 3072 m	1646 mi; 2649 km	36°34′43″n 118°17′31″w﻿ / ﻿36.5786°n 118.292°w	10080
+1	2	mount williamson	sierra nevada	14379 ft; 4383 m	1677 ft; 511 m	5.4 mi; 8.7 km	36°39′21″n 118°18′40″w﻿ / ﻿36.6559°n 118.3111°w	1677
+2	3	white mountain peak	white mountains	14252 ft; 4344 m	7196 ft; 2193 m	67 mi; 109 km	37°38′3″n 118°15′21″w﻿ / ﻿37.6341°n 118.2557°w	7196
+*/
+
+Q: which mountain peak has a prominence more than 10,000 ft?
+SQL: To answer the question, we need following steps:
+1. Find the prominence in ft of each mountain from `prominence_in_ft` column.
+2. Find the mountain with prominence more than 10,000 ft.
+Final SQL query:
+```
+SELECT `mountain peak` FROM t1 WHERE `prominence_in_ft` > 10000
+```
+
+
+Read the following table and write a SQL query to answer the question:
+Title: Daegu FC
+CREATE TABLE t1(
+	row_id int,
+	season int,
+	division int,
+	tms. int,
+	pos. int,
+	fa cup text,
+	afc cl text,
+	top_n int)
+/*
+3 example rows:
+SELECT * FROM t1 LIMIT 3;
+row_id	season	division	tms.	pos.	fa cup	afc cl	top_n
+0	2003	1	12	11	quarter final	none	8
+1	2004	1	13	10	round of 32	none	32
+2	2005	1	13	8	quarter final	none	8
+*/
+
+Q: how far did they make it in the fa cup after 2009?
+SQL: To answer the question, we need following steps:
+1. Determine how far did they make it for each season.
+2. Find the best result after 2009.
+Final SQL query:
+```
+SELECT `fa cup` FROM t1 WHERE `season` > 2009 ORDER BY `top_n` LIMIT 1
+```
+
+
+Read the following table and write a SQL query to answer the question:
+Title: Electricity in Sri Lanka
+CREATE TABLE t1(
+	row_id int,
+	filledcolumnname text,
+	2005 int,
+	2006 int,
+	2007 int,
+	2008 int,
+	2009 int,
+	2010 int,
+	2011 int,
+	2012 int)
+/*
+3 example rows:
+SELECT * FROM t1 LIMIT 3;
+row_id	filledcolumnname	2005	2006	2007	2008	2009	2010	2011	2012
+0	hydro power	1293	1316	1326	1357	1379	1382	1401	1584
+1	thermal	1155	1155	1155	1285	1290	1390	1690	1638
+2	other renewables	3	3	3	3	15	45	50	90
+*/
+
+Q: did the hydro power increase or decrease from 2010 to 2012?
+SQL: To answer the question, we need following steps:
+1. Find the hydro power in 2010 and 2012.
+2. Compare the numbers.
+Final SQL query:
+```
+SELECT CASE 
+    WHEN 
+    (SELECT `2010` FROM t1 WHERE `filledcolumnname` = 'hydro power') 
+    < 
+    (SELECT `2012` FROM t1 WHERE `filledcolumnname` = 'hydro power') 
+    THEN 'increase' 
+    ELSE 'decrease' 
+END
+```
+
+
+Read the following table and write a SQL query to answer the question:
+Title: Electoral district of Lachlan
+CREATE TABLE t1(
+	row_id int,
+	member text,
+	party text,
+	term text,
+	term_length int)
+/*
+3 example rows:
+SELECT * FROM t1 LIMIT 3;
+row_id	member	party	term	term_length
+0	john ryan	none	1859–1864	5
+1	james martin	none	1864–1869	5
+2	james watson	none	1869–1880	11
+*/
+
+Q: of the members of the lachlan, who served the longest?
+SQL: To answer the question, we need following steps:
+1. Find how long each member served by `term_length` column.
+2. Find the member who served the longest.
+Final SQL query:
+```
+SELECT `member` FROM t1 ORDER BY `term_length` DESC LIMIT 1
+```
+
+
+Read the following table and write a SQL query to answer the question:
+Title: Płock Governorate
+CREATE TABLE t1(
+	row_id int,
+	language text,
+	number int,
+	percentage (%) text,
+	males int,
+	females int)
+/*
+3 example rows:
+SELECT * FROM t1 LIMIT 3;
+row_id	language	number	percentage (%)	males	females
+0	polish	447685	80.86	216794	230891
+1	yiddish	51215	9.25	24538	26677
+2	german	35931	6.49	17409	18522
+*/
+
+Q: how many male and female german speakers are there?
+SQL: To answer the question, we need following steps:
+1. Find the number of male and female speakers by `males` and `females` columns.
+2. Find the german speakers by `language` column.
+3. Add number of male and female german speakers.
+Final SQL query:
+```
+SELECT `males` + `females` FROM t1 WHERE `language` = 'german'
+```
